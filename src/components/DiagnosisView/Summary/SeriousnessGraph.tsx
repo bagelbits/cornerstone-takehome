@@ -20,7 +20,6 @@ const PageComponent = ({ seriousness }: ComponentProps) => {
     value: node.count,
   }));
 
-  console.log(seriousnessData);
   return (
     <Box flexGrow={1}>
       <Typography>Seriousness</Typography>

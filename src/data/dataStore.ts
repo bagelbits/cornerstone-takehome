@@ -28,7 +28,7 @@ export async function loadCSV(): Promise<Diagnosis[]> {
     });
     await finished(parser);
     isLoaded = true;
-    console.log(records);
+
     return records;
   } catch (err) {
     console.error("Error loading the CSV file:", err);

@@ -20,7 +20,6 @@ const PageComponent = ({ ongoing }: ComponentProps) => {
     value: node.count,
   }));
 
-  console.log(ongoingData);
   return (
     <Box flexGrow={1}>
       <Typography>Ongoing</Typography>

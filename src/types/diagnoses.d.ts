@@ -33,6 +33,11 @@ export type Diagnosis = {
   cai_record_num: string;
 };
 
+export type SearchParams = {
+  page?: number;
+  page_size?: number;
+};
+
 export type ChartNode = {
   name: string;
   count: number;

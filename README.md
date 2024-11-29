@@ -22,15 +22,15 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 
 ## Todo
 
-- [ ] Load csv into data store
-- [ ] Add flags for each row in data store
-- [ ] Create /api/v1/diagnoses/summary endpoint
-- [ ] Add App bar to top of page
-- [ ] Add graphs for Summary component and hook up
+- [x] Load csv into data store
+- [x] Create /api/v1/diagnoses/summary endpoint
+- [x] Add App bar to top of page
+- [x] Add graphs for Summary component and hook up
 - [ ] Add searchStore method to data store
 - [ ] Add DiagnosisTable component with Data Grid
 - [ ] Add pagination to DiagnosisTable
 - [ ] Add filters to DiagnosisTable
 - [ ] Add updateStore method to data store
 - [ ] Hook up Data Grid cell editing to data store
+- [ ] Add flags for each row in data store
 - [ ] Add column for flagging rows

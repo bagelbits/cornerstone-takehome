@@ -15,12 +15,11 @@ const pieParams = {
 };
 
 const PageComponent = ({ eventNames }: ComponentProps) => {
-  const ongoingData = eventNames.map((node) => ({
+  const eventData = eventNames.map((node) => ({
     label: node.name,
     value: node.count,
   }));
 
-  console.log(ongoingData);
   return (
     <Box flexGrow={1}>
       <Typography>Top 20 Events</Typography>
@@ -30,7 +29,7 @@ const PageComponent = ({ eventNames }: ComponentProps) => {
             innerRadius: 40,
             highlightScope: { fade: "global", highlight: "item" },
             faded: { innerRadius: 30, additionalRadius: -10, color: "gray" },
-            data: ongoingData,
+            data: eventData,
           },
         ]}
         {...pieParams}
@@ -42,7 +41,7 @@ const PageComponent = ({ eventNames }: ComponentProps) => {
 const LoadingState = () => {
   return (
     <Box flexGrow={1}>
-      <Typography>Ongoing</Typography>
+      <Typography>Top 20 Events</Typography>
       <Skeleton variant="circular" animation="wave" width={200} height={200} />
     </Box>
   );
