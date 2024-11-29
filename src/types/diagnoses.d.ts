@@ -35,7 +35,7 @@ export type Diagnosis = {
 
 export type SearchParams = {
   page?: number;
-  page_size?: number;
+  pageSize?: number;
 };
 
 export type ChartNode = {
