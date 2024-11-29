@@ -26,10 +26,11 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 - [x] Create /api/v1/diagnoses/summary endpoint
 - [x] Add App bar to top of page
 - [x] Add graphs for Summary component and hook up
-- [ ] Add searchStore method to data store
 - [ ] Add DiagnosisTable component with Data Grid
+- [ ] Add searchStore method to data store
 - [ ] Add pagination to DiagnosisTable
 - [ ] Add filters to DiagnosisTable
+- [ ] Turn on edit functionality for Data Grid
 - [ ] Add updateStore method to data store
 - [ ] Hook up Data Grid cell editing to data store
 - [ ] Add flags for each row in data store
