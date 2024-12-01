@@ -7,33 +7,46 @@ import { Diagnosis } from "@/types/diagnoses";
 const filePath = "./src/data/diagnoses.csv";
 const records: Diagnosis[] = [];
 let isLoaded = false;
+let loadPromise: Promise<Diagnosis[]> | null = null;
 
 export async function loadCSV(): Promise<Diagnosis[]> {
   if (isLoaded) {
     return records;
   }
 
-  try {
-    const parser = fs.createReadStream(filePath).pipe(
-      parse({
-        columns: true,
-      })
-    );
-    parser.on("readable", function () {
-      let record;
-      while ((record = parser.read()) !== null) {
-        // Work with each record
-        records.push(record);
-      }
-    });
-    await finished(parser);
-    isLoaded = true;
-
-    return records;
-  } catch (err) {
-    console.error("Error loading the CSV file:", err);
-    throw err;
+  if (loadPromise) {
+    return loadPromise;
   }
+
+  loadPromise = new Promise<Diagnosis[]>((resolve, reject) => {
+    try {
+      const parser = fs.createReadStream(filePath).pipe(
+        parse({
+          columns: true,
+        })
+      );
+      parser.on("readable", function () {
+        let record;
+        while ((record = parser.read()) !== null) {
+          // Replace row_names key with id
+          if (record.row_names) {
+            record.id = record.row_names;
+            delete record.row_names;
+          }
+          records.push(record);
+        }
+      });
+      finished(parser).then(() => {
+        isLoaded = true;
+        resolve(records);
+      });
+    } catch (err) {
+      console.error("Error loading the CSV file:", err);
+      reject(err);
+    }
+  });
+
+  return loadPromise;
 }
 
 export async function getRecords(): Promise<Diagnosis[]> {

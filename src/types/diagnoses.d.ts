@@ -36,6 +36,8 @@ export type Diagnosis = {
 export type SearchParams = {
   page?: number;
   pageSize?: number;
+  severity?: string[];
+  events?: string[];
 };
 
 export type ChartNode = {

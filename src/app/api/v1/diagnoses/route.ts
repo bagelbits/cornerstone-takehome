@@ -3,12 +3,26 @@ import { NextRequest } from "next/server";
 
 export async function GET(request: NextRequest): Promise<Response> {
   const searchParams = request.nextUrl.searchParams;
-  // TODO: Implement search functionality
   console.log(searchParams);
   const records = await getRecords();
-  const totalRecords = records.length;
 
-  // TODO: Sorting
+  // Filtering
+  const severity = searchParams.getAll("severity");
+  const events = searchParams.getAll("events");
+
+  const filteredRecords = records.filter((record) => {
+    if (
+      severity.length > 0 &&
+      (Number(record.Severity) < Number(severity[0]) ||
+        Number(record.Severity) > Number(severity[1]))
+    ) {
+      return false;
+    }
+    if (events.length > 0 && !events.includes(record.Event_Name)) {
+      return false;
+    }
+    return true;
+  });
 
   // Pagination
   const page = parseInt(searchParams.get("page") || "1", 10);
@@ -17,7 +31,8 @@ export async function GET(request: NextRequest): Promise<Response> {
   const start = (page - 1) * pageSize;
   const end = start + pageSize;
 
-  const paginatedRecords = records.slice(start, end);
+  const totalRecords = filteredRecords.length;
+  const paginatedRecords = filteredRecords.slice(start, end);
 
   return new Response(
     JSON.stringify({

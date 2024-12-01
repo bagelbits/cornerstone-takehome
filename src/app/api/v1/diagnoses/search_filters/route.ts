@@ -5,8 +5,8 @@ type Filters = {
     min: number | null;
     max: number | null;
   };
-  conditions: string[];
-  start_date: {
+  events: string[];
+  startDate: {
     min: Date | null;
     max: Date | null;
   };
@@ -20,8 +20,8 @@ export async function GET(): Promise<Response> {
       min: null,
       max: null,
     },
-    conditions: [],
-    start_date: {
+    events: [],
+    startDate: {
       min: null,
       max: null,
     },
@@ -39,21 +39,21 @@ export async function GET(): Promise<Response> {
     ) {
       filters.severity.max = Number(record.Severity);
     }
-    filters.conditions.push(record.Event_Name);
+    filters.events.push(record.Event_Name);
     if (
-      filters.start_date.min === null ||
-      new Date(record.Start_Date) < filters.start_date.min
+      filters.startDate.min === null ||
+      new Date(record.Start_Date) < filters.startDate.min
     ) {
-      filters.start_date.min = new Date(record.Start_Date);
+      filters.startDate.min = new Date(record.Start_Date);
     }
     if (
-      filters.start_date.max === null ||
-      new Date(record.Start_Date) > filters.start_date.max
+      filters.startDate.max === null ||
+      new Date(record.Start_Date) > filters.startDate.max
     ) {
-      filters.start_date.max = new Date(record.Start_Date);
+      filters.startDate.max = new Date(record.Start_Date);
     }
   }
-  filters.conditions = Array.from(new Set(filters.conditions)).sort();
+  filters.events = Array.from(new Set(filters.events)).sort();
 
   console.log(filters);
   return new Response(JSON.stringify(filters), {

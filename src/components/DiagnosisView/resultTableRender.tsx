@@ -6,8 +6,12 @@ export const defaultSearchParams = {
 };
 
 const columns: GridColDef[] = [
-  { field: "row_names", headerName: "Row Names", sortable: false },
-  { field: "Event_Name", headerName: "Event Name", sortable: false },
+  {
+    field: "Event_Name",
+    headerName: "Event Name",
+    width: 200,
+    sortable: false,
+  },
   { field: "Serious", headerName: "Serious", sortable: false },
   { field: "Ongoing", headerName: "Ongoing", sortable: false },
   { field: "Severity", headerName: "Severity", sortable: false },
@@ -17,7 +21,7 @@ const columns: GridColDef[] = [
   { field: "Subject", headerName: "Subject", sortable: false },
   { field: "Prot", headerName: "Protocol", sortable: false },
   { field: "Visit", headerName: "Visit", sortable: false },
-  { field: "Cause", headerName: "Cause", sortable: false },
+  { field: "Cause", headerName: "Cause", width: 200, sortable: false },
   { field: "Cause_1", headerName: "Cause 1", sortable: false },
   { field: "Cause_1_Name", headerName: "Cause 1 Name", sortable: false },
   { field: "Cause_2", headerName: "Cause 2", sortable: false },
