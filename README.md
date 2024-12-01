@@ -44,3 +44,4 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 - Data Grid should still show a loading state on initial load
 - Pick better colors for graphs
 - Setup a theme palette
+- Light/dark mode
