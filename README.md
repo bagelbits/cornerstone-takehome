@@ -36,3 +36,11 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 - [ ] Add flags for each row in data store
 - [ ] Add column for flagging rows
 - [ ] Add in sorting to Data Grid
+
+## Nice to have
+
+- Filters also affect graphs
+- Columns are sortable
+- Data Grid should still show a loading state on initial load
+- Pick better colors for graphs
+- Setup a theme palette
