@@ -1,13 +1,4 @@
-import {
-  DataGridProps,
-  GridColDef,
-  GridFeatureMode,
-  GridToolbarColumnsButton,
-  GridToolbarContainer,
-  GridToolbarDensitySelector,
-} from "@mui/x-data-grid";
-
-import { DEFAULT_PAGINATION_OPTIONS } from "@/utils/constants";
+import { DataGridProps, GridColDef } from "@mui/x-data-grid";
 
 export const defaultSearchParams = {
   page: 1,
@@ -68,28 +59,7 @@ const columns: GridColDef[] = [
   },
 ];
 
-const DataGridToolbar = () => {
-  return (
-    <GridToolbarContainer>
-      <GridToolbarColumnsButton />
-      <GridToolbarDensitySelector />
-    </GridToolbarContainer>
-  );
-};
-
 export const dataGridProps: DataGridProps = {
   columns,
   getRowId: (row) => row.cai_record_num,
-
-  // Default filters
-  slots: {
-    toolbar: DataGridToolbar,
-  },
-  disableColumnFilter: true,
-  pagination: true,
-  paginationMode: "server" as GridFeatureMode,
-  pageSizeOptions: DEFAULT_PAGINATION_OPTIONS.pageSizeOptions,
-  slotProps: {
-    loadingOverlay: { variant: "skeleton", noRowsVariant: "skeleton" },
-  },
 };

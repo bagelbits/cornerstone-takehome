@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-import { Box, Grid } from "@mui/material";
-import { DataGrid, GridPaginationModel } from "@mui/x-data-grid";
+import { Grid } from "@mui/material";
+import { GridPaginationModel } from "@mui/x-data-grid";
 import useSWR from "swr";
 
 import Error from "@/components/General/Error";
@@ -11,6 +11,7 @@ import { fetcherWithQueryString } from "@/utils/fetcher";
 
 import Filters from "./Filters";
 import { dataGridProps, defaultSearchParams } from "./resultTableRender";
+import CorcerstoneDataGrid from "../General/CornerstoneDataGrid";
 
 const PageComponent = () => {
   const [searchParams, setSearchParams] =
@@ -47,27 +48,17 @@ const PageComponent = () => {
         />
       </Grid>
       <Grid item xs={12}>
-        <Box
-          sx={{
-            width: "100%",
-            display: "flex",
-            flexDirection: "column",
-            minHeight: 210,
-            backgroundColor: "background.paper",
+        <CorcerstoneDataGrid
+          {...dataGridProps}
+          rows={results}
+          paginationModel={{
+            page: pagination.page - 1,
+            pageSize: pagination.pageSize,
           }}
-        >
-          <DataGrid
-            {...dataGridProps}
-            rows={results}
-            paginationModel={{
-              page: pagination.page - 1,
-              pageSize: pagination.pageSize,
-            }}
-            rowCount={pagination.total}
-            onPaginationModelChange={handlePaginationModelChange}
-            loading={isLoading}
-          />
-        </Box>
+          rowCount={pagination.total}
+          onPaginationModelChange={handlePaginationModelChange}
+          loading={isLoading}
+        />
       </Grid>
     </Grid>
   );
