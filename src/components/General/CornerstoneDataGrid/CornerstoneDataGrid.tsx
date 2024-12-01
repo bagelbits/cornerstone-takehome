@@ -13,18 +13,18 @@ const CornerstoneDataGrid = (props: DataGridProps) => {
       ...props.slots,
     },
   };
-  // const height =
-  //   166 +
-  //   (mergedProps?.paginationModel?.pageSize ||
-  //     DEFAULT_PAGINATION_OPTIONS.pageSize) *
-  //     52;
+  const height =
+    166 +
+    (mergedProps?.paginationModel?.pageSize ||
+      DEFAULT_PAGINATION_OPTIONS.pageSize) *
+      52;
   return (
     <Box
       sx={{
         width: "100%",
         display: "flex",
         flexDirection: "column",
-        height: 682,
+        height,
         backgroundColor: "background.paper",
       }}
     >
