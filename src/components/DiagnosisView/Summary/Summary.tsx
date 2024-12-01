@@ -3,17 +3,13 @@ import useSWR from "swr";
 
 import Error from "@/components/General/Error";
 import fetcher from "@/utils/fetcher";
-import { DiagnosisSummary, SearchParams } from "@/types/diagnoses";
+import { DiagnosisSummary } from "@/types/diagnoses";
 
 import SeriousnessGraph from "./SeriousnessGraph";
 import OngoingGraph from "./OngoingGraph";
 import EventNameGraph from "./EventNameGraph";
 
-type ComponentProps = {
-  searchParams: SearchParams;
-};
-
-const PageComponent = ({ searchParams }: ComponentProps) => {
+const PageComponent = () => {
   const { data, error, isLoading } = useSWR(
     "/api/v1/diagnoses/summary",
     fetcher

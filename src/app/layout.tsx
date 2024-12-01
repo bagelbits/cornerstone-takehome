@@ -1,5 +1,7 @@
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 
+import ClientLayout from "./ClientLayout";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -12,7 +14,7 @@ export default function RootLayout({
       </head>
       <body>
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-          {children}
+          <ClientLayout>{children}</ClientLayout>
         </AppRouterCacheProvider>
       </body>
     </html>
