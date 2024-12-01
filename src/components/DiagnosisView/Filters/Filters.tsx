@@ -7,6 +7,7 @@ import fetcher from "@/utils/fetcher";
 
 import SeverityFilter from "./SeverityFilter";
 import EventFilter from "./EventFilter";
+import StartDateFilter from "./StartDateFilter";
 
 type ComponentProps = {
   searchParams: SearchParams;
@@ -27,7 +28,7 @@ const PageComponent = ({ searchParams, setSearchParams }: ComponentProps) => {
   }
 
   return (
-    <Grid container spacing={3} alignItems={"center"} sx={{ pb: 3 }}>
+    <Grid container spacing={10} alignItems={"center"} sx={{ px: 2, pb: 3 }}>
       <Grid item xs={4}>
         <EventFilter
           events={data.events}
@@ -43,9 +44,11 @@ const PageComponent = ({ searchParams, setSearchParams }: ComponentProps) => {
         />
       </Grid>
       <Grid item xs={4}>
-        <Typography variant="h5" align="center">
-          Here
-        </Typography>
+        <StartDateFilter
+          startDate={data.startDate}
+          searchParams={searchParams}
+          setSearchParams={setSearchParams}
+        />
       </Grid>
     </Grid>
   );

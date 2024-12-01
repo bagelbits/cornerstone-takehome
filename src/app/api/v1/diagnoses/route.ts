@@ -1,4 +1,5 @@
 import { getRecords } from "@/data/dataStore";
+import dayjs from "dayjs";
 import { NextRequest } from "next/server";
 
 export async function GET(request: NextRequest): Promise<Response> {
@@ -9,6 +10,7 @@ export async function GET(request: NextRequest): Promise<Response> {
   // Filtering
   const severity = searchParams.getAll("severity");
   const events = searchParams.getAll("events");
+  const startDate = searchParams.get("startDate");
 
   const filteredRecords = records.filter((record) => {
     if (
@@ -19,6 +21,12 @@ export async function GET(request: NextRequest): Promise<Response> {
       return false;
     }
     if (events.length > 0 && !events.includes(record.Event_Name)) {
+      return false;
+    }
+    if (
+      startDate &&
+      !dayjs(record.Start_Date).isSame(dayjs(startDate), "day")
+    ) {
       return false;
     }
     return true;

@@ -38,6 +38,7 @@ export type SearchParams = {
   pageSize?: number;
   severity?: string[];
   events?: string[];
+  startDate?: Dayjs;
 };
 
 export type ChartNode = {
