@@ -15,7 +15,6 @@ const PageComponent = ({
   searchParams,
   setSearchParams,
 }: ComponentProps) => {
-  console.log(startDate);
   const handleDateChange = (date: Dayjs | null) => {
     setSearchParams({ ...searchParams, startDate: date?.format("YYYY-MM-DD") });
   };

@@ -55,7 +55,6 @@ export async function GET(): Promise<Response> {
   }
   filters.events = Array.from(new Set(filters.events)).sort();
 
-  console.log(filters);
   return new Response(JSON.stringify(filters), {
     headers: {
       "content-type": "application/json",

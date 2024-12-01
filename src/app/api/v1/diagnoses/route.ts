@@ -4,7 +4,6 @@ import { NextRequest } from "next/server";
 
 export async function GET(request: NextRequest): Promise<Response> {
   const searchParams = request.nextUrl.searchParams;
-  console.log(searchParams);
   const records = await getRecords();
 
   // Filtering

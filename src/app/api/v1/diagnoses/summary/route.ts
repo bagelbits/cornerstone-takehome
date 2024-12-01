@@ -1,13 +1,8 @@
-import { NextRequest } from "next/server";
-
 import { getRecords } from "@/data/dataStore";
 
 const MAX_EVENT_NAMES = 20;
 
-export async function GET(request: NextRequest): Promise<Response> {
-  const searchParams = request.nextUrl.searchParams;
-  // TODO: Implement search functionality
-  console.log(searchParams);
+export async function GET(): Promise<Response> {
   const records = await getRecords();
   const seriosness: Record<string, number> = {};
   const ongoing: Record<string, number> = {};

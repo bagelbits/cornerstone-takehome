@@ -25,7 +25,6 @@ const PageComponent = () => {
     return <Error label={"Error loading diagnoses"} />;
   }
 
-  console.log(data);
   const results = data?.results || [];
   const pagination = data?.pagination || DEFAULT_PAGINATION_OPTIONS;
 
