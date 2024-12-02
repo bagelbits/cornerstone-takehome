@@ -39,13 +39,11 @@ const PageComponent = () => {
   };
 
   const handleRowUpdate = (updatedRow: Diagnosis) => {
-    console.log("Updated row:", updatedRow);
     const response = fetcherWithBody(
       `/api/v1/diagnoses/${updatedRow.cai_record_num}`,
       updatedRow
     );
 
-    console.log("Response:", response);
     return response;
   };
 
@@ -62,7 +60,6 @@ const PageComponent = () => {
         />
       </Grid>
       <Grid item xs={12}>
-        {/* TODO: https://mui.com/x/react-data-grid/editing/#server-side-persistence */}
         <CorcerstoneDataGrid
           {...dataGridProps}
           editMode="row"
@@ -76,6 +73,8 @@ const PageComponent = () => {
           loading={isLoading}
           processRowUpdate={handleRowUpdate}
           onProcessRowUpdateError={handleProcessRowUpdateError}
+          checkboxSelection
+          disableRowSelectionOnClick
         />
       </Grid>
     </Grid>

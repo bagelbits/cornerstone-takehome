@@ -63,7 +63,6 @@ export async function updateDiagnosis(
   const index = records.findIndex(
     (record) => record?.cai_record_num === diagnosis_id
   );
-  console.log(index);
   if (index === -1) {
     throw new Error(`Diagnosis with id ${diagnosis_id} not found`);
   }

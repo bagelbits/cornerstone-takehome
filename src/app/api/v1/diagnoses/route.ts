@@ -53,16 +53,3 @@ export async function GET(request: NextRequest): Promise<Response> {
     }
   );
 }
-
-export async function POST(request: NextRequest): Promise<Response> {
-  const body = await request.json();
-  console.log(body);
-
-  // const updatedDiagnosis = await updateDiagnosis(diagnosis_id, body);
-
-  return new Response(JSON.stringify({}), {
-    headers: {
-      "content-type": "application/json",
-    },
-  });
-}
