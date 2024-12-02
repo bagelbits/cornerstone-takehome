@@ -1,4 +1,4 @@
-import { Grid, Typography } from "@mui/material";
+import { Grid, Skeleton } from "@mui/material";
 import useSWR from "swr";
 
 import Error from "@/components/General/Error";
@@ -58,19 +58,13 @@ const LoadingState = () => {
   return (
     <Grid container spacing={3} alignItems={"center"} sx={{ pb: 3 }}>
       <Grid item xs={4}>
-        <Typography variant="h5" align="center">
-          Loading
-        </Typography>
+        <Skeleton variant="rounded" height={56} />
       </Grid>
       <Grid item xs={4}>
-        <Typography variant="h5" align="center">
-          Loading
-        </Typography>
+        <Skeleton variant="rounded" height={56} />
       </Grid>
       <Grid item xs={4}>
-        <Typography variant="h5" align="center">
-          Loading
-        </Typography>
+        <Skeleton variant="rounded" height={56} />
       </Grid>
     </Grid>
   );

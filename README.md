@@ -22,6 +22,7 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 
 ## Todo
 
+- [x] Setup Next.js
 - [x] Load csv into data store
 - [x] Create /api/v1/diagnoses/summary endpoint
 - [x] Add App bar to top of page
@@ -30,7 +31,7 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 - [x] Add searchStore method to data store
 - [x] Add pagination to DiagnosisTable
 - [x] Add filters to DiagnosisTable
-- [ ] Setup load state for filters
+- [x] Setup load state for filters
 - [x] Turn on edit functionality for Data Grid
 - [x] Add updateStore method to data store
 - [x] Hook up Data Grid cell editing to data store
