@@ -35,8 +35,10 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 - [x] Turn on edit functionality for Data Grid
 - [x] Add updateStore method to data store
 - [x] Hook up Data Grid cell editing to data store
-- [ ] Add flags for each row in data store
-- [ ] Add column for flagging rows
+- [ ] Add flag state for each row in data store
+- [ ] Add column for selecting rows
+- [ ] Change row color based on flag state
+- [ ] Create custom toolbar buttons for flagging rows
 
 ## Nice to have
 
