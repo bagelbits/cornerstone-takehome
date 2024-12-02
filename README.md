@@ -30,9 +30,10 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 - [x] Add searchStore method to data store
 - [x] Add pagination to DiagnosisTable
 - [x] Add filters to DiagnosisTable
+- [ ] Setup load state for filters
 - [x] Turn on edit functionality for Data Grid
-- [ ] Add updateStore method to data store
-- [ ] Hook up Data Grid cell editing to data store
+- [x] Add updateStore method to data store
+- [x] Hook up Data Grid cell editing to data store
 - [ ] Add flags for each row in data store
 - [ ] Add column for flagging rows
 - [ ] Add in sorting to Data Grid
@@ -46,3 +47,4 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 - Setup a theme palette
 - Light/dark mode
 - Editing data should refresh filters
+- Edit validation

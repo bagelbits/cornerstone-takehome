@@ -53,3 +53,20 @@ export async function getRecords(): Promise<Diagnosis[]> {
   await loadCSV();
   return records;
 }
+
+export async function updateDiagnosis(
+  diagnosis_id: string,
+  updatedDiagnosis: Diagnosis
+): Promise<Diagnosis> {
+  await loadCSV();
+
+  const index = records.findIndex(
+    (record) => record?.cai_record_num === diagnosis_id
+  );
+  console.log(index);
+  if (index === -1) {
+    throw new Error(`Diagnosis with id ${diagnosis_id} not found`);
+  }
+  records[index] = updatedDiagnosis;
+  return updatedDiagnosis;
+}

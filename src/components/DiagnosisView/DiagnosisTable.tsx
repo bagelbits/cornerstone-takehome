@@ -6,8 +6,8 @@ import useSWR from "swr";
 
 import Error from "@/components/General/Error";
 import { DEFAULT_PAGINATION_OPTIONS } from "@/utils/constants";
-import { SearchParams } from "@/types/diagnoses";
-import { fetcherWithQueryString } from "@/utils/fetcher";
+import { Diagnosis, SearchParams } from "@/types/diagnoses";
+import { fetcherWithBody, fetcherWithQueryString } from "@/utils/fetcher";
 
 import Filters from "./Filters";
 import { dataGridProps, defaultSearchParams } from "./resultTableRender";
@@ -38,6 +38,21 @@ const PageComponent = () => {
     });
   };
 
+  const handleRowUpdate = (updatedRow: Diagnosis) => {
+    console.log("Updated row:", updatedRow);
+    const response = fetcherWithBody(
+      `/api/v1/diagnoses/${updatedRow.cai_record_num}`,
+      updatedRow
+    );
+
+    console.log("Response:", response);
+    return response;
+  };
+
+  const handleProcessRowUpdateError = (error: Error) => {
+    console.error("Error updating row:", error);
+  };
+
   return (
     <Grid container sx={{ width: "calc(100% - 128px)", mt: 3 }}>
       <Grid item xs={12}>
@@ -47,8 +62,10 @@ const PageComponent = () => {
         />
       </Grid>
       <Grid item xs={12}>
+        {/* TODO: https://mui.com/x/react-data-grid/editing/#server-side-persistence */}
         <CorcerstoneDataGrid
           {...dataGridProps}
+          editMode="row"
           rows={results}
           paginationModel={{
             page: pagination.page - 1,
@@ -57,6 +74,8 @@ const PageComponent = () => {
           rowCount={pagination.total}
           onPaginationModelChange={handlePaginationModelChange}
           loading={isLoading}
+          processRowUpdate={handleRowUpdate}
+          onProcessRowUpdateError={handleProcessRowUpdateError}
         />
       </Grid>
     </Grid>
