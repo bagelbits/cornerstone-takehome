@@ -37,7 +37,6 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 - [x] Hook up Data Grid cell editing to data store
 - [ ] Add flags for each row in data store
 - [ ] Add column for flagging rows
-- [ ] Add in sorting to Data Grid
 
 ## Nice to have
 
