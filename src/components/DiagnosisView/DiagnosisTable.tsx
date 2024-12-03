@@ -1,22 +1,82 @@
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 
-import { Grid } from "@mui/material";
-import { GridPaginationModel } from "@mui/x-data-grid";
+import { Button, Grid } from "@mui/material";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import ErrorIcon from "@mui/icons-material/Error";
+import { GridPaginationModel, GridRowSelectionModel } from "@mui/x-data-grid";
 import useSWR from "swr";
 
 import Error from "@/components/General/Error";
 import { DEFAULT_PAGINATION_OPTIONS } from "@/utils/constants";
-import { Diagnosis, SearchParams } from "@/types/diagnoses";
+import {
+  DiagnosisStatus,
+  Diagnosis,
+  SearchParams,
+  UpdateDiagnosisRequest,
+} from "@/types/diagnoses";
 import { fetcherWithBody, fetcherWithQueryString } from "@/utils/fetcher";
 
 import Filters from "./Filters";
 import { dataGridProps, defaultSearchParams } from "./resultTableRender";
 import CorcerstoneDataGrid from "../General/CornerstoneDataGrid";
 
+type ExtraToolbarButtonsProps = {
+  rowsSelected: GridRowSelectionModel;
+  handleRowUpdate: (updatedRow: UpdateDiagnosisRequest) => Promise<Diagnosis>;
+};
+
+const ExtraToolbarButtons = ({
+  rowsSelected,
+  handleRowUpdate,
+}: ExtraToolbarButtonsProps): ReactNode[] => {
+  if (!rowsSelected || rowsSelected.length === 0) {
+    return [];
+  }
+
+  const handleClick = (flag: DiagnosisStatus) => {
+    for (const rowId of rowsSelected) {
+      handleRowUpdate({ cai_record_num: rowId as string, status: flag });
+    }
+  };
+
+  return [
+    <Button
+      color="error"
+      size="small"
+      startIcon={<ErrorIcon />}
+      onClick={() => handleClick("error")}
+      key={1}
+    >
+      Erroneous
+    </Button>,
+    <Button
+      color="success"
+      size="small"
+      startIcon={<CheckCircleIcon />}
+      onClick={() => handleClick("valid")}
+      key={2}
+    >
+      Valid
+    </Button>,
+    <Button
+      color="info"
+      size="small"
+      startIcon={<BookmarkIcon />}
+      onClick={() => handleClick("bookmark")}
+      key={3}
+    >
+      Bookmark
+    </Button>,
+  ];
+};
+
 const PageComponent = () => {
   const [searchParams, setSearchParams] =
     useState<SearchParams>(defaultSearchParams);
-  const { data, error, isLoading } = useSWR(
+  const [rowsSelected, setRowsSelected] = useState<GridRowSelectionModel>([]);
+
+  const { data, error, isLoading, mutate } = useSWR(
     ["/api/v1/diagnoses", searchParams],
     ([url, params]) => fetcherWithQueryString(url, params)
   );
@@ -38,11 +98,12 @@ const PageComponent = () => {
     });
   };
 
-  const handleRowUpdate = (updatedRow: Diagnosis) => {
-    const response = fetcherWithBody(
+  const handleRowUpdate = async (updatedRow: UpdateDiagnosisRequest) => {
+    const response = await fetcherWithBody(
       `/api/v1/diagnoses/${updatedRow.cai_record_num}`,
       updatedRow
     );
+    mutate();
 
     return response;
   };
@@ -75,6 +136,18 @@ const PageComponent = () => {
           onProcessRowUpdateError={handleProcessRowUpdateError}
           checkboxSelection
           disableRowSelectionOnClick
+          onRowSelectionModelChange={(newRowSelectionModel) => {
+            setRowsSelected(newRowSelectionModel);
+          }}
+          rowSelectionModel={rowsSelected}
+          slotProps={{
+            toolbar: {
+              ExtraToolbarButtons: ExtraToolbarButtons({
+                rowsSelected,
+                handleRowUpdate,
+              }),
+            },
+          }}
         />
       </Grid>
     </Grid>

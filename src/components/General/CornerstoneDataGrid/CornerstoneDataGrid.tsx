@@ -1,8 +1,9 @@
 import { Box } from "@mui/material";
-import { DataGrid, DataGridProps } from "@mui/x-data-grid";
+import { DataGridProps } from "@mui/x-data-grid";
 
 import { DEFAULT_DATAGRID_OPTIONS } from "./utils";
 import { DEFAULT_PAGINATION_OPTIONS } from "@/utils/constants";
+import { StyledDataGrid } from "./styles";
 
 const CornerstoneDataGrid = (props: DataGridProps) => {
   const mergedProps: DataGridProps = {
@@ -12,7 +13,12 @@ const CornerstoneDataGrid = (props: DataGridProps) => {
       ...DEFAULT_DATAGRID_OPTIONS.slots,
       ...props.slots,
     },
+    slotProps: {
+      ...DEFAULT_DATAGRID_OPTIONS.slotProps,
+      ...props.slotProps,
+    },
   };
+
   const height =
     166 +
     (mergedProps?.paginationModel?.pageSize ||
@@ -28,13 +34,7 @@ const CornerstoneDataGrid = (props: DataGridProps) => {
         backgroundColor: "background.paper",
       }}
     >
-      <DataGrid
-        {...mergedProps}
-        pagination
-        slotProps={{
-          loadingOverlay: { variant: "skeleton", noRowsVariant: "skeleton" },
-        }}
-      />
+      <StyledDataGrid {...mergedProps} pagination />
     </Box>
   );
 };

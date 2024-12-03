@@ -4,7 +4,7 @@ const fetcher = async (url: string) => {
 
 export const fetcherWithBody = async (
   url: string,
-  body: Record<string, object | string>,
+  body: Record<string, object | string | null>,
   method: string = "POST"
 ) => {
   return await fetch(url, {

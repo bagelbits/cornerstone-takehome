@@ -2,23 +2,19 @@
 
 ## Getting Started
 
-First, run the development server:
+First, install the dependencies:
 
 ```bash
-npm run dev
-# or
+yarn
+```
+
+Next, run the development server:
+
+```bash
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
 ## Todo
 
@@ -35,10 +31,10 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 - [x] Turn on edit functionality for Data Grid
 - [x] Add updateStore method to data store
 - [x] Hook up Data Grid cell editing to data store
-- [ ] Add flag state for each row in data store
-- [ ] Add column for selecting rows
-- [ ] Change row color based on flag state
-- [ ] Create custom toolbar buttons for flagging rows
+- [x] Add flag state for each row in data store
+- [x] Add column for selecting rows
+- [x] Change row color based on flag state
+- [x] Create custom toolbar buttons for flagging rows
 
 ## Nice to have
 
@@ -50,3 +46,4 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 - Light/dark mode
 - Editing data should refresh filters
 - Edit validation
+- Bulk update

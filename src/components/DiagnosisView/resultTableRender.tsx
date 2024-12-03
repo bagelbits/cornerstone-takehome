@@ -1,3 +1,4 @@
+import { DiagnosisStatus } from "@/types/diagnoses";
 import { DataGridProps, GridColDef } from "@mui/x-data-grid";
 
 export const defaultSearchParams = {
@@ -150,6 +151,18 @@ const columns: GridColDef[] = [
   },
 ];
 
+const STATUS_TO_CLASS_MAPPING = {
+  bookmark: "Info",
+  valid: "Success",
+  error: "Error",
+};
+
 export const dataGridProps: DataGridProps = {
   columns,
+  getRowClassName: (params) =>
+    params.row.status
+      ? `cornerstone-theme--${
+          STATUS_TO_CLASS_MAPPING[params.row.status as DiagnosisStatus]
+        }`
+      : "",
 };
