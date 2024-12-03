@@ -66,6 +66,9 @@ export async function updateDiagnosis(
   if (index === -1) {
     throw new Error(`Diagnosis with id ${diagnosis_id} not found`);
   }
-  records[index] = updatedDiagnosis;
+
+  const existingDiagnosis = records[index];
+  const mergedDiagnosis = { ...existingDiagnosis, ...updatedDiagnosis };
+  records[index] = mergedDiagnosis;
   return updatedDiagnosis;
 }
