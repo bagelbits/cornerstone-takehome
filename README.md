@@ -1,5 +1,7 @@
 # Cornerstone Take Home Assignment
 
+![Screenshot](image.png)
+
 ## Getting Started
 
 First, install the dependencies:

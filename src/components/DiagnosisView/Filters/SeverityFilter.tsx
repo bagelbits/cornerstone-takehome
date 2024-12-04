@@ -1,6 +1,6 @@
 import { SyntheticEvent, useState } from "react";
 
-import { Slider } from "@mui/material";
+import { Slider, Typography } from "@mui/material";
 
 import { SearchParams } from "@/types/diagnoses";
 import { range } from "@/utils/common";
@@ -41,16 +41,19 @@ const PageComponent = ({
   };
 
   return (
-    <Slider
-      min={severity.min}
-      max={severity.max}
-      marks={marks}
-      value={value}
-      onChange={handleChange}
-      onChangeCommitted={handleChangeCommitted}
-      valueLabelDisplay="auto"
-      getAriaValueText={(value) => `${value}`}
-    />
+    <>
+      <Typography gutterBottom>Severity</Typography>
+      <Slider
+        min={severity.min}
+        max={severity.max}
+        marks={marks}
+        value={value}
+        onChange={handleChange}
+        onChangeCommitted={handleChangeCommitted}
+        valueLabelDisplay="auto"
+        getAriaValueText={(value) => `${value}`}
+      />
+    </>
   );
 };
 

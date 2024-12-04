@@ -5,7 +5,7 @@ import Error from "@/components/General/Error";
 import fetcher from "@/utils/fetcher";
 import { DiagnosisSummary } from "@/types/diagnoses";
 
-import SeriousnessGraph from "./SeriousnessGraph";
+import SeriousGraph from "./SeriousGraph";
 import OngoingGraph from "./OngoingGraph";
 import EventNameGraph from "./EventNameGraph";
 
@@ -18,6 +18,7 @@ const PageComponent = () => {
   const diagnosesSummary = data as DiagnosisSummary;
 
   if (error) {
+    console.error("Error loading diagnoses summary", error);
     return <Error label={"Error loading diagnoses summary"} />;
   }
   if (isLoading) {
@@ -29,9 +30,7 @@ const PageComponent = () => {
         <EventNameGraph.PageComponent
           eventNames={diagnosesSummary.event_names}
         />
-        <SeriousnessGraph.PageComponent
-          seriousness={diagnosesSummary.seriosness}
-        />
+        <SeriousGraph.PageComponent serious={diagnosesSummary.serious} />
         <OngoingGraph.PageComponent ongoing={diagnosesSummary.ongoing} />
       </Stack>
     </Paper>
@@ -43,7 +42,7 @@ const LoadingState = () => {
     <Paper sx={{ mt: 9, p: 1 }}>
       <Stack direction="row" width="100%" textAlign="center" spacing={2}>
         <EventNameGraph.LoadingState />
-        <SeriousnessGraph.LoadingState />
+        <SeriousGraph.LoadingState />
         <OngoingGraph.LoadingState />
       </Stack>
     </Paper>

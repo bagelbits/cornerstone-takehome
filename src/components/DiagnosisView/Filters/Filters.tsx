@@ -1,4 +1,4 @@
-import { Grid, Skeleton } from "@mui/material";
+import { Grid, Skeleton, Typography } from "@mui/material";
 import useSWR from "swr";
 
 import Error from "@/components/General/Error";
@@ -24,7 +24,8 @@ const PageComponent = ({ searchParams, setSearchParams }: ComponentProps) => {
     return <LoadingState />;
   }
   if (error) {
-    return <Error label={"Error loading diagnoses"} />;
+    console.error("Error loading diagnoses filters", error);
+    return <Error label={"Error loading diagnoses filters"} />;
   }
 
   return (
@@ -61,6 +62,7 @@ const LoadingState = () => {
         <Skeleton variant="rounded" height={56} />
       </Grid>
       <Grid item xs={4}>
+        <Typography>Severity</Typography>
         <Skeleton variant="rounded" height={56} />
       </Grid>
       <Grid item xs={4}>

@@ -1,4 +1,4 @@
-export type DiagnosisStatus = "error" | "valid" | "bookmark";
+export type DiagnosisStatus = "error" | "valid" | "bookmark" | "";
 
 export type Diagnosis = {
   row_names: string;
@@ -33,7 +33,7 @@ export type Diagnosis = {
   Cause_2: string;
   Cause_3: string;
   cai_record_num: string;
-  status?: null | DiagnosisStatus;
+  status?: DiagnosisStatus;
 };
 
 export type UpdateDiagnosisRequest = {
@@ -86,7 +86,7 @@ export type ChartNode = {
 };
 
 export type DiagnosisSummary = {
-  seriosness: ChartNode[];
+  serious: ChartNode[];
   ongoing: ChartNode[];
   event_names: ChartNode[];
 };

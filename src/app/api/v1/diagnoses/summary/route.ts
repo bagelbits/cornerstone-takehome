@@ -4,15 +4,15 @@ const MAX_EVENT_NAMES = 20;
 
 export async function GET(): Promise<Response> {
   const records = await getRecords();
-  const seriosness: Record<string, number> = {};
+  const serious: Record<string, number> = {};
   const ongoing: Record<string, number> = {};
   const event_name: Record<string, number> = {};
   for (const record of records) {
     if (record.Serious) {
-      if (!seriosness[record.Serious]) {
-        seriosness[record.Serious] = 0;
+      if (!serious[record.Serious]) {
+        serious[record.Serious] = 0;
       }
-      seriosness[record.Serious] += 1;
+      serious[record.Serious] += 1;
     }
     if (record.Ongoing) {
       if (!ongoing[record.Ongoing]) {
@@ -28,8 +28,8 @@ export async function GET(): Promise<Response> {
     }
   }
 
-  // Convert seriosness to a list of objects with name and count
-  const seriosnessList = Object.entries(seriosness).map(([name, count]) => ({
+  // Convert serious to a list of objects with name and count
+  const seriousList = Object.entries(serious).map(([name, count]) => ({
     name,
     count,
   }));
@@ -53,7 +53,7 @@ export async function GET(): Promise<Response> {
 
   return new Response(
     JSON.stringify({
-      seriosness: seriosnessList.sort((a, b) => b.count - a.count),
+      serious: seriousList.sort((a, b) => b.count - a.count),
       ongoing: ongoingList.sort((a, b) => b.count - a.count),
       event_names: topEventNames,
     }),

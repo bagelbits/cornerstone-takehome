@@ -2,6 +2,7 @@ import { ReactNode, useState } from "react";
 
 import { Button, Grid } from "@mui/material";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
+import CancelIcon from "@mui/icons-material/Cancel";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ErrorIcon from "@mui/icons-material/Error";
 import { GridPaginationModel, GridRowSelectionModel } from "@mui/x-data-grid";
@@ -34,7 +35,7 @@ const ExtraToolbarButtons = ({
     return [];
   }
 
-  const handleClick = (flag: DiagnosisStatus) => {
+  const handleClick = (flag?: DiagnosisStatus) => {
     for (const rowId of rowsSelected) {
       handleRowUpdate({ cai_record_num: rowId as string, status: flag });
     }
@@ -68,6 +69,15 @@ const ExtraToolbarButtons = ({
     >
       Bookmark
     </Button>,
+    <Button
+      color="secondary"
+      size="small"
+      startIcon={<CancelIcon />}
+      onClick={() => handleClick("")}
+      key={4}
+    >
+      Clear
+    </Button>,
   ];
 };
 
@@ -82,7 +92,14 @@ const PageComponent = () => {
   );
 
   if (error) {
-    return <Error label={"Error loading diagnoses"} />;
+    console.error("Error loading diagnoses:", error);
+    return (
+      <Grid container sx={{ width: "calc(100% - 128px)", mt: 3 }}>
+        <Grid item xs={12}>
+          <Error label={"Error loading diagnoses"} />
+        </Grid>
+      </Grid>
+    );
   }
 
   const results = data?.results || [];

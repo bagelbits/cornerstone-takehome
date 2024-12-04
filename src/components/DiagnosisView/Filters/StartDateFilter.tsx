@@ -16,6 +16,11 @@ const PageComponent = ({
   setSearchParams,
 }: ComponentProps) => {
   const handleDateChange = (date: Dayjs | null) => {
+    if (!date) {
+      delete searchParams.startDate;
+      setSearchParams({ ...searchParams });
+      return;
+    }
     setSearchParams({ ...searchParams, startDate: date?.format("YYYY-MM-DD") });
   };
   return (
@@ -27,6 +32,9 @@ const PageComponent = ({
         value={searchParams.startDate ? dayjs(searchParams.startDate) : null}
         onChange={handleDateChange}
         sx={{ width: "100%" }}
+        slotProps={{
+          field: { clearable: true, onClear: () => handleDateChange(null) },
+        }}
       />
     </LocalizationProvider>
   );
